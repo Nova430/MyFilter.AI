@@ -138,3 +138,9 @@ declare type CreateUserParams = {
     hasDownload?: boolean;
     setIsTransformation?: React.Dispatch<React.SetStateAction<boolean>>;
   };
+
+  declare type ReplicateImage = {
+    imageUrl: string;
+    style: string;
+    prompt: string;
+  };
