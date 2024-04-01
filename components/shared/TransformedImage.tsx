@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { debounce, download } from '@/lib/utils';
