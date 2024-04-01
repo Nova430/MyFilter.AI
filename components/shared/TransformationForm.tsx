@@ -71,10 +71,6 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
 
-    startTransition(async () => {
-        await updateCredits(userId, creditFee)
-    })
-
     if(data || image) {
       const transformationUrl = getCldImageUrl({
         width: image?.width,
@@ -173,6 +169,10 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     setTransformationConfig(
       deepMergeObjects(newTransformation, transformationConfig)
     )
+
+    startTransition(async () => {
+        await updateCredits(userId, creditFee)
+    })
 
     setNewTransformation(null)
   }
