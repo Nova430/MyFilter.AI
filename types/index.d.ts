@@ -57,6 +57,7 @@ declare type CreateUserParams = {
   
   declare type Transformations = {
     restore?: boolean;
+    ps2filter?: boolean;
     fillBackground?: boolean;
     remove?: {
       prompt: string;
@@ -90,6 +91,7 @@ declare type CreateUserParams = {
   
   declare type TransformationTypeKey =
     | "restore"
+    | "ps2filter"
     | "fill"
     | "remove"
     | "recolor"

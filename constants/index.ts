@@ -10,6 +10,11 @@ export const navLinks = [
       icon: "/assets/icons/image.svg",
     },
     {
+      label: "PS2 Filter",
+      route: "/transformations/add/ps2filter",
+      icon: "/assets/icons/image.svg",
+    },
+    {
       label: "Generative Fill",
       route: "/transformations/add/fill",
       icon: "/assets/icons/stars.svg",
@@ -125,6 +130,13 @@ export const navLinks = [
       title: "Restore Image",
       subTitle: "Refine images by removing noise and imperfections",
       config: { restore: true },
+      icon: "image.svg",
+    },
+    ps2filter: {
+      type: "ps2filter",
+      title: "PS2 Filter",
+      subTitle: "Refine images by removing noise and imperfections",
+      config: { ps2filter: true },
       icon: "image.svg",
     },
     removeBackground: {
