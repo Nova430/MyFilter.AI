@@ -21,12 +21,12 @@ const Sidebar = () => {
             <nav className="sidebar-nav">
                 <SignedIn>
                     <ul className="sidebar-nav_elements">
-                        {navLinks.slice(0,7).map((link) => {
+                        {navLinks.slice(0,2).map((link) => {
                             const isActive = link.route === pathname
 
                             return (
                                 <li key={link.route} className={`sidebar-nav_element group ${
-                                    isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'
+                                    isActive ? 'bg-white/10 text-white' : 'text-gray-400'
                                 }`}>
                                     <Link className='sidebar-link' href={link.route}>
                                         <Image
@@ -43,12 +43,12 @@ const Sidebar = () => {
                         })}
                         </ul>
                         <ul>
-                        {navLinks.slice(7).map((link) => {
+                        {navLinks.slice(2).map((link) => {
                             const isActive = link.route === pathname
 
                             return (
                                 <li key={link.route} className={`sidebar-nav_element group ${
-                                    isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'
+                                    isActive ? 'bg-white/10 text-white' : 'text-gray-400'
                                 }`}>
                                     <Link className='sidebar-link' href={link.route}>
                                         <Image
@@ -63,7 +63,7 @@ const Sidebar = () => {
                                 </li>
                             )
                         })}
-                        <li className='flex-center cursor-pointer gap-2 p-4'>
+                        <li className='flex-left cursor-pointer gap-2 p-4'>
                             <UserButton afterSignOutUrl='/' showName />
                         </li>
                     </ul>

@@ -178,7 +178,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   }
 
   useEffect(() => {
-    if(image && (type === 'restore' || type === 'removeBackground')) {
+    if(image && (type === 'restore' || type === 'removeBackground' || type === 'ps2filter')) {
       setNewTransformation(transformationType.config)
     }
   }, [image, transformationType.config, type])
@@ -187,13 +187,13 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
-        <CustomField 
+        {/* <CustomField 
           control={form.control}
           name="title"
           formLabel="Image Title"
           className="w-full"
           render={({ field }) => <Input {...field} className="input-field" />}
-        />
+        /> */}
 
         {type === 'fill' && (
           <CustomField
@@ -296,7 +296,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         <div className="flex flex-col gap-4">
           <Button 
             type="button"
-            className="submit-button capitalize"
+            className=" capitalize"
             disabled={isTransformation || newTransformation === null}
             onClick={onTransformHandler}
           >
@@ -304,7 +304,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           </Button>
           <Button 
             type="submit"
-            className="submit-button capitalize"
+            className=" capitalize"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Submitting...' : 'Save Image'}
