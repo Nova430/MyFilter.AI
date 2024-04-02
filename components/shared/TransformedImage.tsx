@@ -100,7 +100,11 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
                   placeholder={dataUrl as PlaceholderValue}
                   className="transformed-image"
                   onLoad={() => {
-                    setIsTransformation && setIsTransformation(false);
+                    if (setIsTransformation) {
+                      setTimeout(() => {
+                        setIsTransformation(false);
+                      }, 2000); // Delay of 2000 milliseconds (2 seconds)
+                    }
                   }}
                   onError={() => {
                     debounce(() => {
