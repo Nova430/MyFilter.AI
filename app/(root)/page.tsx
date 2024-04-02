@@ -12,10 +12,10 @@ const Home = async ({ searchParams }: SearchParamProps) => {
 
   return (
     <>
-      <h1 className="home-heading">Hi</h1>
-      {/* <section className="home">
+      <h1 className="home-heading">Ps2 Filter</h1>
+      {<section className="home">
         <h1 className="home-heading">
-          Unleash Your Creative Vision with Imaginify
+          Unleash Your Creative Vision with ps2aifilter.com
         </h1>
         <ul className="flex-center w-full gap-20">
           {navLinks.slice(1, 5).map((link) => (
@@ -40,7 +40,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           totalPages={images?.totalPage}
           page={page}
         />
-      </section> */}
+      </section>}
     </>
   )
 }
