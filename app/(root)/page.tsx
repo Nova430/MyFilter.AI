@@ -12,7 +12,8 @@ const Home = async ({ searchParams }: SearchParamProps) => {
 
   return (
     <>
-      <section className="home">
+      <h1 className="home-heading">Hi</h1>
+      {/* <section className="home">
         <h1 className="home-heading">
           Unleash Your Creative Vision with Imaginify
         </h1>
@@ -39,7 +40,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           totalPages={images?.totalPage}
           page={page}
         />
-      </section>
+      </section> */}
     </>
   )
 }

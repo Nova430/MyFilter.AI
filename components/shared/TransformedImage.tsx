@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { dataUrl, debounce, download, getImageSize } from '@/lib/utils';
+import { dataUrl, debounce, download, getImageSize, handleError } from '@/lib/utils';
 
 import axios from 'axios';
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props';
@@ -23,21 +23,34 @@ async function transformImageWithReplicate({ imageUrl, style, prompt } : Replica
 
 const TransformedImage = ({ image, type, title, transformationConfig, isTransformation, setIsTransformation, hasDownload = false } : TransformedImageProps) => {
   const [transformedImageUrl, setTransformedImageUrl] = useState<string>('');
-
+  const [isEffectRunning, setIsEffectRunning] = useState(false);
   useEffect(() => {
-    if (image?.publicId) {
-      // Assuming you have the necessary info (imageUrl, style, prompt) to call this function
-      const imageUrl = image?.secureURL;
-      const style = ''; // Define the style as needed
-      const prompt = ''; // Define the prompt as needed
+    if (image?.publicId && isTransformation) {
+      if (isEffectRunning || !image?.publicId || !isTransformation) {
+        return;
+      }
+  
+      setIsEffectRunning(true);
 
-      transformImageWithReplicate({ imageUrl, style, prompt })
-        .then(setTransformedImageUrl)
-        .catch((error) => {
-          console.error('Error loading transformed image:', error);
-          if (setIsTransformation)
-            setIsTransformation(false);
-        });
+      const imageUrl = image?.secureURL;
+        const style = ''; // Define the style as needed
+        const prompt = ''; // Define the prompt as needed
+
+        transformImageWithReplicate({ imageUrl, style, prompt })
+          .then(setTransformedImageUrl)
+          .catch((error) => {
+            console.error('Error loading transformed image:', error);
+            if (setIsTransformation)
+              setIsTransformation(false);
+          })
+          .finally(() => {
+            setIsEffectRunning(false); // Reset the flag when the operation is complete
+          });
+          // Cleanup function if necessary
+          return () => {
+            // Reset the effect running state if the component unmounts or the effect cleans up
+            setIsEffectRunning(false);
+          };
     }
   }, [image, transformationConfig, setIsTransformation]);  
 
@@ -56,7 +69,7 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
     return (
         <div className="flex flex-col gap-4">
             <div className="flex-between">
-                <h3 className="h3-bold text-dark-600">
+                <h3 className="h3-bold text-zinc-200">
                     Transformed
                 </h3>
 
